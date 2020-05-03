@@ -1,0 +1,22 @@
+---
+ - hosts: centos1
+   gather_facts: false
+   vars:
+    - x: 5
+    - y: avi
+   vars_prompt:
+   - name: username
+     prompt: Enter your username
+
+   -  name: password
+      prompt: Enter your password
+      private: yes
+   
+   tasks:
+    - debug:
+        msg:
+         - "username is {{ username }}"
+         - "password is {{ password }}"
+         - "x is {{ x }}"
+         - "y is {{ y }}"
+

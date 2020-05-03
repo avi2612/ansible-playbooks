@@ -1,0 +1,13 @@
+---
+ - hosts: ubuntu1
+   gather_facts: false
+   tasks:
+    - name: getting bash version
+      shell: bash --version
+      register: bash_version
+
+    - name: using setfact to make operations on variable
+      set_fact:
+        bash_version: "{{ bash_version.stdout.split('\n')[0].split(' ')[3] }}"
+
+    - debug: var=bash_version

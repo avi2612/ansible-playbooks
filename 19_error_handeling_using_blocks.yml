@@ -1,0 +1,29 @@
+---
+ - hosts: all
+   tasks:
+    - block:
+       - name: install httpd on {{ inventory_hostname }}
+         yum:
+          name: httpd
+          state: latest
+       - name: restarting httpd
+         service:
+          name: httpd
+          state: restarted
+      ignore_errors: true
+      become: true
+      when: ansible_os_family=="RedHat"
+
+    
+    - block:
+       - name: install apache2 on {{ inventory_hostname }}
+         yum:
+          name: apache2
+          state: latest
+       - name: restarting httpd
+         service:
+          name: httpd
+          state: restarted
+      ignore_errors: true
+      become: true
+      when: ansible_os_family=="Debian"

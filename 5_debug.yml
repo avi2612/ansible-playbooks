@@ -1,0 +1,18 @@
+---
+ - hosts: centos1
+   gather_facts: false
+   tasks:
+    - name: debug testing
+      debug: msg="welcome to ansible"
+    
+    - name: testing method2
+      debug:
+        msg: "welcome to ansible 2"
+
+
+    - name: testing method3
+      debug:
+        msg:
+         - "hi how are you"
+         - "are you available"
+         - "yes"

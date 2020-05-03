@@ -1,0 +1,14 @@
+---
+ - hosts: ubuntu1
+   vars_files:
+    - kk.yml
+    - ko.json
+   gather_facts: false
+   tasks:
+    - debug: var=package1
+    - debug: var=package2
+    - debug: var=package3
+    - debug: var=package4
+    - debug: var=package5
+    - debug: var=package6
+

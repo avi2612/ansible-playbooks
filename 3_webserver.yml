@@ -1,0 +1,14 @@
+---
+ - hosts: ubuntu1
+   gather_facts: false
+   tasks:
+    - name: install nginx
+      apt: name=nginx state=latest
+      become: true
+
+ - hosts: centos1
+   gather_facts: false
+   tasks:
+    - name: install httpd
+      yum: name=httpd state=latest
+      become: true

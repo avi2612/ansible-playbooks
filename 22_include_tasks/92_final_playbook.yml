@@ -1,0 +1,20 @@
+---
+ - hosts: all
+   become: true
+   tasks:
+    - name: debian
+      block:
+         
+       - name: java
+         include_tasks: debian_java.yml 
+
+       - name: apache2  
+         include_tasks: debian_apache2.yml
+
+      when: ansible_os_family=="Debian" and inventory_hostname=="ubuntu1"
+
+    - name: rhel
+      block:
+       - include_tasks: redhat_java.yml 
+       - include_tasks: redhat_httpd.yml
+      when: ansible_os_family=="RedHat" and inventory_hostname=="centos1"

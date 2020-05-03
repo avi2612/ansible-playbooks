@@ -1,0 +1,16 @@
+---
+ - hosts: centos1
+   gather_facts: false
+   become: true
+   tasks:
+    - name: install httpd
+      yum:
+       name: httpd
+       state: present
+      notify:
+       - start_httpd
+   handlers:
+    - name: start_httpd
+      service:
+       name: httpd
+       state: started

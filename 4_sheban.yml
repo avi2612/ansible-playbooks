@@ -1,0 +1,9 @@
+#! /usr/bin/ansible-playbook
+
+---
+ - hosts: centos1
+   become: yes
+   gather_facts: false
+   tasks:
+    - name: install nano on centos
+      yum: name=nano state=present

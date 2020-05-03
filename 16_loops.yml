@@ -1,0 +1,20 @@
+---
+ - hosts: ubuntu1
+   become: true
+   gather_facts: false
+   tasks:
+    - debug:
+       msg: "currently installing {{ item }}"
+      loop:
+       - httpd
+       - vim
+       - nano
+       - tomcat
+    
+    - debug:
+       msg: "{{ item }}"
+      with_items:
+       - httpd
+       - vim
+       - nano
+       - tomcat

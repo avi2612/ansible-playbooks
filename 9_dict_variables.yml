@@ -1,0 +1,19 @@
+---
+ - hosts: ubuntu1
+   gather_facts: false
+   vars:
+    packages1: {"CentOS":"httpd","Ubuntu":"apache2"}
+    packages2:
+     "RHEL": "httpd"
+     "Debian": "apache2"
+  
+   tasks:
+    - name: 1st try
+      debug: var=packages2
+
+    - name: 2nd try
+      debug: var=packages2['RHEL']
+
+    
+    - name: 3rd
+      debug: var=packages1.get("Ubuntu")

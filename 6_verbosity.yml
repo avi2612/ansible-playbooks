@@ -1,0 +1,18 @@
+---
+ - hosts: centos1
+   tasks:
+    - debug:
+       var: inventory_hostname
+
+    - debug: var=ansible_hostname
+
+    - debug:
+        msg: "os name is: {{ ansible_distribution }}"
+
+
+    - debug:
+       msg: "this is default verbosity"
+
+    - debug:
+       msg: "this is verbosity level 2"
+       verbosity: 2

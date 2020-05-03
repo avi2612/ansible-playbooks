@@ -1,0 +1,12 @@
+---
+ - hosts: centos1
+   become: true
+   tasks:
+    - yum: name=tree state=present
+    - yum: name=wget state=present
+
+ - hosts: ubuntu1
+   become: true
+   tasks:
+    - apt: name=tree state=present
+    - apt: name=wget state=present

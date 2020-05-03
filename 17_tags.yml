@@ -1,0 +1,30 @@
+---
+ - hosts: centos1
+   gather_facts: false
+   become: true
+   tasks:
+    - name: task1
+      debug:
+        msg: "this is tag one with always"
+      tags:
+       - one
+       - always
+    
+    - name: task2
+      debug:
+        msg: "this is tag two"
+      tags:
+       - two
+
+    - name: task3
+      debug:
+        msg: "this is tag three with never"
+      tags:
+       - three
+       - never
+
+    - command: "ls /home"
+      register: out
+      ignore_errors: true
+      # failed_when: out.rc == 0
+    - debug: var=out

@@ -1,0 +1,25 @@
+---
+ - hosts: ubuntu1
+   gather_facts: false
+   vars:
+    - b: 7
+    - x: 12
+    - k: 44
+    - a: "{{x+9}}"
+    - y: [2,5,3]
+    - z: "hello hi"
+   tasks:
+    - debug:
+        msg: 
+         - "{{a}}"
+         - "{{b+x}}"
+         - "{{b|int + x|int}}"
+         - "{{z.split()}}"
+         - "{{z|upper}}"
+         - "{{z|title}}"
+         - "{{y|min}}"
+         - "{{y|max}}"
+
+     - name: checking greater between 2 numbers
+      debug:
+        msg: "larger in {{x}} and {{k}} is {{ x if ( x > k ) else k }}"

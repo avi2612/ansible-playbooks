@@ -1,0 +1,16 @@
+---
+ - name: Install apache web-server
+   hosts: all
+   become: true
+   tasks:
+    - name: installing apache on {{ansible_distribution}}
+      apt:
+       name: apache2
+       state: absent
+      when: ansible_distribution == "Ubuntu"
+
+    - name: install apache on {{ansible_distribution}}
+      yum:
+       name: httpd
+       state: absent
+      when: ansible_distribution == "CentOS"

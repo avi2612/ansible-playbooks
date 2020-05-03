@@ -1,0 +1,40 @@
+---
+ - hosts: centos1
+   vars:
+    req_java: java-1.8.0-openjdk
+    set_default_java_to_version: jre-1.8.0-openjdk
+    required_tomcat_version: 8.5.57
+    tomcat_port: 8090
+   become: yes
+   tasks:
+     - name: updating yum
+       yum:
+        name: "*"
+        state: latest
+
+     - name: installing required java
+       yum:
+        name: "{{ req_java }}"
+        state: latest
+
+     - name: downloading tomcat
+       get_url:
+        url: "https://mirrors.estointernet.in/apache/tomcat/tomcat-{{ required_tomcat_version[0] }}/v{{ required_tomcat_version }}/bin/apache-tomcat-{{ required_tomcat_version }}.tar.gz"
+        dest: /usr/local/
+
+     - name: extracting tomcat
+       unarchive:
+         src: /usr/local/apache-tomcat-{{ required_tomcat_version }}.tar.gz
+         dest: /usr/local
+         remote_src: yes
+        
+     - name: renaming tomcat folder
+       command: mv /usr/local/apache-tomcat-{{ required_tomcat_version }}  /usr/local/latest_tomcat
+
+     - name: replacing default port with required port, dynamically copy file
+       template:
+        src: sample_server.xml.j2
+        dest: /usr/local/latest_tomcat/conf/server.xml
+       
+     - name: starting tomcat
+       shell: nohup /usr/local/latest_tomcat/bin/startup.sh &

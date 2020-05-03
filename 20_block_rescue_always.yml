@@ -1,0 +1,16 @@
+---
+ - hosts: ubuntu1
+   become: true
+   gather_facts: false
+   tasks:
+    - block:
+       - name: testing try block
+         command : ls /homme
+         register: output
+      
+      rescue:
+       - name: except or catch block | try block failed
+         debug: var=output
+      
+      always:
+       - debug: msg="this is finally block"

@@ -1,0 +1,21 @@
+---
+ - hosts: ubuntu1
+   gather_facts: false
+   vars:
+    package1: ['wget','tree','git']
+    package2:
+     - 'vim'
+     - elinks
+     - apache2
+
+   tasks:
+    - debug: var=package1
+
+    - debug: var=package1[2]
+
+    - debug:
+        msg={{package2}}
+
+    - debug:
+        msg:
+         - "{{package2[2]}}"   

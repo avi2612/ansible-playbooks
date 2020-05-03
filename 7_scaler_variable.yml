@@ -1,0 +1,19 @@
+---
+ - hosts: centos1
+   gather_facts: false
+   vars:
+    name: avinash
+    age: 21
+    engineer: True
+    goal: 'devops engineer'
+   tasks:
+    - debug:
+        msg: "these are defined variables {{ name }}"
+
+    - debug: var=age
+
+    - debug:
+        msg:
+         -  "the data type of {{ goal }} is {{ goal|type_debug }}"
+         -  "the data type of {{ engineer }} is {{ engineer|type_debug }}"
+         -  "the data type of {{ age }} is {{ age|type_debug }}"

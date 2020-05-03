@@ -1,0 +1,11 @@
+---
+ - hosts: all
+   gather_facts: false
+   become: true
+   tasks:
+    - name: copying file
+      copy: src=python.py dest=python_file.py
+
+
+    - name: creating empty file
+      file: dest=/home/avi/new_avi_file.txt state=touch

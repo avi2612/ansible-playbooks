@@ -1,0 +1,10 @@
+---
+ package1: wget
+
+ package2: ['a','b']
+
+ package3: 33
+
+ package4: {
+             "OS":"CentOS","Kernal":"1.0.0"
+           }

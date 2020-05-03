@@ -1,0 +1,10 @@
+---
+ - hosts: all
+   become: true
+   tasks:
+    - include_tasks: "{{ ansible_os_family }}_java.yml" 
+    - include_tasks: "{{ ansible_os_family }}_webserver.yml"
+
+    - include_vars: "{{ ansible_os_family }}_variables.yml"
+
+    - debug: var=x
